@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hjem</title>
+  <link rel="stylesheet" href="login.css">
+  <style>
+    /* Logg ut-knapp */
+    #logoutBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 20px;
+      background-color: #ff4d4d;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    #logoutBtn:hover {
+      background-color: #cc0000;
+    }
+
+    /* Sørg for at headeren alltid ligger øverst */
+    #topp {
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* Container for innholdet under header */
+    .page-content {
+      margin-top: 120px; /* Løfter innholdet under headeren */
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER ØVERST -->
+  <header id="topp">
+    <p id="topp-tekst">Elvebakken Videregående Skole</p>
+    <img id="topp-logo" src="baka.png" alt="baka">
+  </header>
+
+  <!-- Hovedinnhold -->
+  <div class="page-content">
+    <h1>Velkommen, du er logget inn ✅</h1>
+    <button id="logoutBtn">Logg ut</button>
+  </div>
+
+  <script>
+    // ======== HJELPEFUNKSJONER ========
+    function checkLoginStatus() {
+      if (localStorage.getItem("isLoggedIn") !== "true") {
+        window.location.href = "login.html";
+      }
+    }
+
+    function deleteCookie(name) {
+      document.cookie = name + "=; path=/; max-age=0; SameSite=Lax";
+    }
+
+    // ======== KJØRING ========
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Sjekk innloggingsstatus
+      checkLoginStatus();
+
+      // 2. Logout-knapp
+      const logoutButton = document.getElementById("logoutBtn");
+      if (logoutButton) {
+        logoutButton.addEventListener("click", () => {
+          localStorage.removeItem("isLoggedIn");
+          deleteCookie("loggedIn");
+          window.location.href = "login.html";
+        });
+      } else {
+        console.error("Fant ikke logout-knappen!");
+      }
+    });
+  </script>
+</body>
+</html>

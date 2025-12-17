@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <link rel="stylesheet" href="login.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login-side</title>
+</head>
+<body>
+  <!-- Toppseksjon -->
+  <header>
+    <div id="topp">
+      <p id="topp-tekst">Elvebakken Videregående Skole</p>
+      <img id="topp-logo" src="baka.png" alt="baka">
+    </div>
+  </header>
+
+  <!-- Overskrift -->
+  <div id="elevlærer">
+    <p id="elevlærer-tekst">Logg inn som elev/lærer</p>
+  </div>
+
+  <!-- Skjema -->
+  <div id="skriveinn">
+    <p>Brukernavn</p>
+    <input type="text" id="brukernavn">
+
+    <p>Passord</p>
+    <input type="password" id="passord" placeholder="*******">
+  </div>
+
+  <!-- Logg inn knapp -->
+  <div id="login-boks">
+    <button id="login-knapp">Logg inn</button>
+  </div>
+
+  <!-- Glemt passord / personvern -->
+  <div id="glemtpassord">
+    <p id="glemtpassord-tekst">Glemt Passord</p>
+    <p id="glemtpassord-tekst">Personvern</p>
+  </div>
+
+  <script src="login.js"></script>
+  <script>
+    // Hvis brukeren allerede er logget inn, send dem direkte til home.html
+    if (localStorage.getItem("isLoggedIn") === "true") {
+      window.location.href = "home.html";
+    }
+  </script>
+</body>
+</html>
